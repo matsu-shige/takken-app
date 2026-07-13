@@ -30,7 +30,7 @@
   --bg:#191918; --surface:#212120; --surface-subtle:#282826;
   --ink:#ECEBE7; --ink-mid:#A8A6A0; --ink-low:#726F68;
   --line:#34322F; --line-strong:#45423D;
-  --accent:#5CACFF; --accent-strong:#2E7FDB; --accent-soft:rgba(92,172,255,.14); --accent-ink:#FFFFFF;
+  --accent:#E08A6A; --accent-strong:#D97757; --accent-soft:rgba(217,119,87,.16); --accent-ink:#2A1810;
   --ok:#4ABE79; --ok-soft:rgba(74,190,121,.12); --ng:#F0685F; --ng-soft:rgba(240,104,95,.12);
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -61,12 +61,15 @@ header .spacer{flex:1}
 .iconbtn:hover{border-color:var(--accent);color:var(--accent-strong)}
 .iconbtn.on{border-color:var(--accent);color:var(--accent-strong);background:var(--accent-soft)}
 
-.theme-toggle{display:flex;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;height:44px}
-.theme-toggle button{background:var(--surface);border:none;color:var(--ink-low);font-family:var(--mono);
-  font-size:10px;letter-spacing:.06em;padding:0 14px;cursor:pointer}
-.theme-toggle button+button{border-left:1px solid var(--line)}
-.theme-toggle button:hover{color:var(--ink-mid)}
-.theme-toggle button.on{background:var(--accent-soft);color:var(--accent-strong);font-weight:600}
+.switch{position:relative;flex:none;width:56px;height:30px;border:1px solid var(--line);
+  border-radius:999px;background:var(--surface);cursor:pointer;padding:0;transition:background .15s,border-color .15s}
+.switch .ico{position:absolute;top:0;height:30px;width:26px;display:flex;align-items:center;justify-content:center;
+  font-size:12px;color:var(--ink-low);pointer-events:none}
+.switch .ico.sun{left:2px} .switch .ico.moon{right:2px}
+.switch .knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;
+  background:var(--ink-mid);transition:transform .18s ease,background .15s;z-index:1}
+:root[data-theme="dark"] .switch{border-color:var(--accent);background:var(--accent-soft)}
+:root[data-theme="dark"] .switch .knob{transform:translateX(26px);background:var(--accent)}
 
 main{flex:1;padding:24px 20px 40px}
 
@@ -180,9 +183,10 @@ a{color:var(--accent-strong)}
       <h1><b>宅建</b> 過去問 2026ver</h1>
     </div>
     <div class="spacer"></div>
-    <div class="theme-toggle" id="themeToggle">
-      <button data-t="light">LIGHT</button><button data-t="dark">DARK</button>
-    </div>
+    <button class="switch" id="themeToggle" title="ライト / ダーク切替" aria-label="ライト / ダーク切替">
+      <span class="ico sun">☀</span><span class="ico moon">☾</span>
+      <span class="knob"></span>
+    </button>
     <button class="iconbtn" id="btnData" title="問題データ">DATA</button>
     <button class="iconbtn" id="btnReset" title="設定">CFG</button>
   </header>
@@ -218,9 +222,9 @@ function initTheme(){
 function applyTheme(t){
   document.documentElement.dataset.theme = t;
   localStorage.setItem(LS_T, t);
-  document.querySelectorAll('#themeToggle button').forEach(b=>{
-    b.classList.toggle('on', b.dataset.t===t);
-  });
+}
+function toggleTheme(){
+  applyTheme(document.documentElement.dataset.theme==='dark' ? 'light' : 'dark');
 }
 initTheme();
 
@@ -668,9 +672,7 @@ function closeModal(){ modal.classList.remove('on'); }
 modal.onclick=(e)=>{ if(e.target===modal) closeModal(); };
 document.getElementById('btnData').onclick=openData;
 document.getElementById('btnReset').onclick=openReset;
-document.querySelectorAll('#themeToggle button').forEach(b=>{
-  b.onclick=()=>applyTheme(b.dataset.t);
-});
+document.getElementById('themeToggle').onclick=toggleTheme;
 
 let toastTimer=null;
 function toast(msg){
