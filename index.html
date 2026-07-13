@@ -685,8 +685,23 @@ function esc(s){ return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;'
 renderHome();
 
 if('serviceWorker' in navigator){
+  // 新バージョンのSWが制御を握ったら1回だけ自動リロード
+  let reloaded = false;
+  navigator.serviceWorker.addEventListener('controllerchange', ()=>{
+    if(reloaded) return; reloaded = true;
+    location.reload();
+  });
   window.addEventListener('load', ()=>{
-    navigator.serviceWorker.register('sw.js').catch(()=>{});
+    navigator.serviceWorker.register('sw.js').then((reg)=>{
+      reg.update();                                  // 起動時に更新確認
+      setInterval(()=>reg.update(), 60*60*1000);     // 1時間ごとにも確認
+    }).catch(()=>{});
+  });
+  // タブに戻ってきた時も更新確認
+  document.addEventListener('visibilitychange', ()=>{
+    if(document.visibilityState==='visible'){
+      navigator.serviceWorker.getRegistration().then(r=>r&&r.update());
+    }
   });
 }
 </script>
