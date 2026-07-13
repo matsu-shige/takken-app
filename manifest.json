@@ -1,0 +1,13 @@
+{
+  "name": "宅建 過去問 2026ver",
+  "short_name": "宅建",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#191918",
+  "theme_color": "#F3F4F6",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

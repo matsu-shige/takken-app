@@ -8,6 +8,12 @@
 <meta name="apple-mobile-web-app-title" content="宅建">
 <meta name="theme-color" content="#F3F4F6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#191918" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="apple-touch-icon" sizes="152x152" href="icon-152.png">
+<link rel="apple-touch-icon" sizes="167x167" href="icon-167.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icon-16.png">
 <title>宅建 過去問</title>
 <style>
 :root{
@@ -49,15 +55,15 @@ header h1 b{font-weight:600;color:var(--accent-strong)}
 header .spacer{flex:1}
 .iconbtn{
   background:var(--surface);border:1px solid var(--line);color:var(--ink-mid);
-  width:34px;height:34px;border-radius:var(--radius);cursor:pointer;
+  width:44px;height:44px;border-radius:var(--radius);cursor:pointer;
   font-family:var(--mono);font-size:12px;display:flex;align-items:center;justify-content:center;
 }
 .iconbtn:hover{border-color:var(--accent);color:var(--accent-strong)}
 .iconbtn.on{border-color:var(--accent);color:var(--accent-strong);background:var(--accent-soft)}
 
-.theme-toggle{display:flex;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;height:34px}
+.theme-toggle{display:flex;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;height:44px}
 .theme-toggle button{background:var(--surface);border:none;color:var(--ink-low);font-family:var(--mono);
-  font-size:10px;letter-spacing:.06em;padding:0 11px;cursor:pointer}
+  font-size:10px;letter-spacing:.06em;padding:0 14px;cursor:pointer}
 .theme-toggle button+button{border-left:1px solid var(--line)}
 .theme-toggle button:hover{color:var(--ink-mid)}
 .theme-toggle button.on{background:var(--accent-soft);color:var(--accent-strong);font-weight:600}
@@ -93,7 +99,8 @@ main{flex:1;padding:24px 20px 40px}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .chip{
   border:1px solid var(--line);background:var(--surface);color:var(--ink-mid);
-  padding:6px 11px;border-radius:var(--radius);font-size:12px;cursor:pointer;user-select:none;font-family:var(--mono);
+  padding:9px 13px;min-height:40px;box-sizing:border-box;display:inline-flex;align-items:center;
+  border-radius:var(--radius);font-size:12px;cursor:pointer;user-select:none;font-family:var(--mono);
 }
 .chip.on{border-color:var(--accent);color:var(--accent-strong);background:var(--accent-soft)}
 .clearlink{font-size:11px;color:var(--accent-strong);margin-top:10px;display:inline-block;cursor:pointer;font-family:var(--mono)}
@@ -674,6 +681,12 @@ function esc(s){ return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;'
 
 /* ---------------- go ---------------- */
 renderHome();
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=>{
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  });
+}
 </script>
 </body>
 </html>
