@@ -24,7 +24,7 @@
   --ok:#15803D; --ok-soft:#EAF6ED; --ng:#B91C1C; --ng-soft:#FDEDED;
   --radius:3px;
   --mono:'SF Mono','JetBrains Mono',Menlo,Consolas,'Courier New',monospace;
-  --sans:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Hiragino Sans','Yu Gothic',sans-serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic Medium','Yu Gothic',sans-serif;
 }
 :root[data-theme="dark"]{
   --bg:#191918; --surface:#212120; --surface-subtle:#282826;
@@ -114,19 +114,20 @@ main{flex:1;padding:24px 20px 40px}
 .progress{height:2px;background:var(--line);margin-bottom:20px}
 .progress > i{display:block;height:100%;background:var(--accent);width:0%}
 
-.stem-intro{font-size:20px;font-weight:400;margin-bottom:14px;white-space:pre-wrap;color:var(--ink)}
+.stem-intro{font-size:20px;font-weight:500;line-height:1.9;letter-spacing:.02em;margin-bottom:14px;white-space:pre-wrap;color:var(--ink)}
 .stem-items{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:18px;overflow:hidden}
 .stem-item{display:flex;gap:12px;padding:12px 14px;background:var(--surface-subtle)}
 .stem-item + .stem-item{border-top:1px solid var(--line)}
 .stem-item .lbl{flex:none;width:22px;height:22px;border:1px solid var(--line-strong);border-radius:var(--radius);
   display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;color:var(--ink-mid);background:var(--surface)}
-.stem-item .tx{font-size:18px;white-space:pre-wrap;padding-top:1px}
-.qtext{font-size:20px;font-weight:400;margin-bottom:18px;white-space:pre-wrap;color:var(--ink)}
+.stem-item .tx{font-size:18px;line-height:1.85;letter-spacing:.02em;white-space:pre-wrap;padding-top:1px}
+.qtext{font-size:20px;font-weight:500;line-height:1.9;letter-spacing:.02em;margin-bottom:18px;white-space:pre-wrap;color:var(--ink)}
 
 .choice{
   display:flex;gap:14px;align-items:flex-start;width:100%;text-align:left;
   border:1px solid var(--line);border-left:3px solid var(--line);background:var(--surface);color:var(--ink);
-  padding:14px 14px;margin-bottom:8px;cursor:pointer;font-size:18px;border-radius:0 var(--radius) var(--radius) 0;
+  padding:14px 14px;margin-bottom:8px;cursor:pointer;font-size:18px;font-weight:400;
+  line-height:1.75;letter-spacing:.01em;border-radius:0 var(--radius) var(--radius) 0;
 }
 .choice:hover:not(.locked){border-color:var(--accent);border-left-color:var(--accent)}
 .choice .k{flex:none;width:20px;height:20px;border:1px solid var(--line-strong);border-radius:var(--radius);
