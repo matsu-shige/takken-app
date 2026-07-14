@@ -50,8 +50,11 @@ header{
   position:sticky;top:0;z-index:5;background:var(--bg);
 }
 .eyebrow{font-family:var(--mono);font-size:10px;color:var(--ink-low);text-transform:uppercase;letter-spacing:.14em}
-header h1{font-size:19px;font-weight:300;letter-spacing:.01em;margin:2px 0 0;color:var(--ink)}
+header h1{font-size:19px;font-weight:300;letter-spacing:.01em;margin:2px 0 0;color:var(--ink);white-space:nowrap}
 header h1 b{font-weight:600;color:var(--accent-strong)}
+header h1 .ver{font-family:var(--mono);font-size:10px;font-weight:400;color:var(--ink-low);
+  border:1px solid var(--line);border-radius:var(--radius);padding:1px 5px;margin-left:7px;vertical-align:2px;letter-spacing:.04em}
+header .htext{min-width:0}
 header .spacer{flex:1}
 .iconbtn{
   background:var(--surface);border:1px solid var(--line);color:var(--ink-mid);
@@ -178,9 +181,9 @@ a{color:var(--accent-strong)}
 <body>
 <div id="app">
   <header>
-    <div>
+    <div class="htext">
       <div class="eyebrow">TAKKEN · 個人用</div>
-      <h1><b>宅建</b> 過去問 2026ver</h1>
+      <h1><b>宅建</b> 過去問<span class="ver">2026</span></h1>
     </div>
     <div class="spacer"></div>
     <button class="switch" id="themeToggle" title="ライト / ダーク切替" aria-label="ライト / ダーク切替">
